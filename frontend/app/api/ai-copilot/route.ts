@@ -128,9 +128,11 @@ Respond ONLY as a JSON object with this exact shape:
 
 export async function POST(req: Request) {
   let query = '';
+  let debug = false;
   try {
     const body = await req.json();
     query = typeof body?.query === 'string' ? body.query : '';
+    debug = body?.debug === true;
   } catch {
     query = '';
   }
@@ -164,7 +166,12 @@ export async function POST(req: Request) {
 
     if (!res.ok) {
       // Quota/auth/rate error -> graceful fallback.
-      return NextResponse.json({ ...copilotRespond(query), engine: 'rule-fallback' });
+      const errText = await res.text().catch(() => '');
+      return NextResponse.json({
+        ...copilotRespond(query),
+        engine: 'rule-fallback',
+        ...(debug ? { debug: { status: res.status, error: errText.slice(0, 500) } } : {}),
+      });
     }
 
     const data = await res.json();
@@ -183,8 +190,12 @@ export async function POST(req: Request) {
       engine: 'gpt',
     };
     return NextResponse.json(response);
-  } catch {
-    return NextResponse.json({ ...copilotRespond(query), engine: 'rule-fallback' });
+  } catch (e) {
+    return NextResponse.json({
+      ...copilotRespond(query),
+      engine: 'rule-fallback',
+      ...(debug ? { debug: { error: String(e).slice(0, 300) } } : {}),
+    });
   }
 }
 
