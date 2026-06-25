@@ -149,7 +149,8 @@ export function zoneName(id: string | null): string {
 }
 
 // 3D layout helpers - each floor occupies a slab in Y. Footprint is a grid.
-export const FLOOR_GAP = 2.6;
+// Larger gap = clearer visual separation between stacked floors in the twin.
+export const FLOOR_GAP = 3.6;
 export const FOOTPRINT = { w: 16, d: 10 }; // x by z
 
 export function floorY(level: number): number {

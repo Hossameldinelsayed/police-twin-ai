@@ -85,6 +85,18 @@ A quick tour of what each screen delivers. (Full narrated descriptions — the v
 
 > No external AI APIs, no telemetry, no database are required to run the demo. The frontend is fully self-contained.
 
+### What each part does (plain English)
+
+- **Next.js** - the application framework. The backbone of the app: it builds and serves every screen (the 7 modules are Next.js pages), pre-renders them for speed, and produces the optimized build that runs on Cloud Run.
+- **TypeScript** - the language. JavaScript plus a type-checking safety layer: every entity (asset, alarm, risk factor, scenario) has a strict "contract", so all modules stay consistent and errors are caught before the app runs.
+- **Three.js (3D)** - the 3D engine. Powers the Digital Twin: the floors, the device markers, lighting and orbit/zoom are rendered live on the GPU (via @react-three/fiber, which runs Three.js inside React).
+- **TailwindCSS** - the styling system. Creates the premium dark "command-center" look: glass cards, glows, the color palette, spacing, and responsive layout.
+- **Node.js + Express (optional)** - the backend server. Exposes the REST API (`/api/assets`, `/api/risk`, `/api/copilot`, ...). The demo runs without it; it's the blueprint for serving real facility data.
+- **PostgreSQL (optional)** - the database. The production data store, with a full schema (buildings, floors, zones, assets, alarms, energy, maintenance) and seed data.
+- **Google Cloud Run** - the hosting. Runs the app in a container and gives it a public HTTPS link; scales to zero when idle so light use stays within the free tier.
+
+> In one line: **TypeScript** keeps the data correct -> **Next.js + React** build the app -> **Tailwind** styles it and **Three.js** renders the 3D twin -> (optionally) **Express + PostgreSQL** serve real data -> **Google Cloud Run** hosts it as a shareable link.
+
 ---
 
 ## 📁 Monorepo structure
