@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #04060c;
+  --grid: rgba(255, 255, 255, 0.035);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: #dbe4f0;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  overflow-x: hidden;
+}
+
+/* Ambient command-center backdrop */
+.app-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(900px 500px at 12% -5%, rgba(6, 174, 219, 0.14), transparent 60%),
+    radial-gradient(700px 500px at 95% 0%, rgba(139, 92, 246, 0.12), transparent 55%),
+    radial-gradient(900px 700px at 50% 110%, rgba(6, 174, 219, 0.08), transparent 60%),
+    #04060c;
+}
+
+.app-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, #000 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, #000 30%, transparent 85%);
+}
+
+@layer components {
+  .glass {
+    @apply relative rounded-2xl border border-white/[0.07] bg-white/[0.025] backdrop-blur-xl;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+      0 8px 40px -12px rgba(0, 0, 0, 0.7);
+  }
+
+  .glass-strong {
+    @apply relative rounded-2xl border border-white/10 bg-ink-850/70 backdrop-blur-2xl;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+      0 12px 50px -14px rgba(0, 0, 0, 0.8);
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300 hover:border-command-500/30 hover:bg-white/[0.04];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium;
+  }
+
+  .data-num {
+    @apply font-mono tabular-nums tracking-tight;
+  }
+
+  .section-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400;
+  }
+
+  /* Subtle moving sheen for premium cards */
+  .sheen::after {
+    content: '';
+    @apply pointer-events-none absolute inset-0 rounded-2xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.07), transparent 42%);
+  }
+
+  .focus-ring {
+    @apply outline-none ring-1 ring-command-500/40 ring-offset-0;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 174, 219, 0.4);
+  background-clip: padding-box;
+}
+
+/* Selection */
+::selection {
+  background: rgba(6, 174, 219, 0.3);
+  color: #fff;
+}
+
+/* Recharts dark theming */
+.recharts-cartesian-axis-tick-value {
+  fill: #6b7a93;
+  font-size: 11px;
+}
+.recharts-default-tooltip {
+  background: rgba(10, 15, 28, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(12px);
+}
+.recharts-tooltip-cursor {
+  fill: rgba(255, 255, 255, 0.04);
+}
+
+/* Scanline accent for command surfaces */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}

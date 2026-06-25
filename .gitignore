@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# next.js build output
+.next/
+**/.next/
+out/
+**/out/
+
+# typescript
+*.tsbuildinfo
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+
+# local artifacts
+police-twin-ai-upload.zip
+*.zip
+
+# os
+.DS_Store
+Thumbs.db
