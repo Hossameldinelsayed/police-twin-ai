@@ -69,7 +69,7 @@ export default function CommandCenterPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        eyebrow="Module 01 · Executive Command Center"
+        eyebrow="Module 01 | Executive Command Center"
         title="Situational Overview"
         subtitle="Real-time facility intelligence across security, energy, occupancy and infrastructure for Central Command HQ."
         icon={<Gauge className="h-5 w-5" />}
@@ -77,7 +77,7 @@ export default function CommandCenterPage() {
           <div className="flex items-center gap-2">
             <LiveBadge />
             <span className="hidden rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs text-slate-400 sm:inline-flex">
-              Synced · {formatTime(NOW_ISO)} GST
+              Synced | {formatTime(NOW_ISO)} GST
             </span>
           </div>
         }
@@ -129,7 +129,7 @@ export default function CommandCenterPage() {
           value={kpiSummary.riskScore}
           accent={kpiSummary.riskCategory === 'High' || kpiSummary.riskCategory === 'Severe' ? 'red' : 'amber'}
           delta={{ value: kpiSummary.riskDelta, direction: 'up', positiveIsGood: false, label: ' pts' }}
-          footer={<span className={riskMeta.text}>{kpiSummary.riskCategory} · 7-day trend</span>}
+          footer={<span className={riskMeta.text}>{kpiSummary.riskCategory} | 7-day trend</span>}
         />
         <KpiCard
           index={1}
@@ -183,7 +183,7 @@ export default function CommandCenterPage() {
           accent="amber"
           footer={
             <span className={kpiSummary.maintenanceOverdue > 0 ? 'text-red-300' : ''}>
-              {kpiSummary.maintenanceOverdue} overdue · {predictiveSummary.within7Days} predicted &lt;7d
+              {kpiSummary.maintenanceOverdue} overdue | {predictiveSummary.within7Days} predicted &lt;7d
             </span>
           }
         />
@@ -210,7 +210,7 @@ export default function CommandCenterPage() {
                   <div className="mb-1 flex items-center justify-between text-xs">
                     <span className="text-slate-300">{f.label}</span>
                     <span className="data-num text-slate-400">
-                      {f.score} <span className="text-slate-600">· {f.contribution}pt</span>
+                      {f.score} <span className="text-slate-600"> | {f.contribution}pt</span>
                     </span>
                   </div>
                   <HealthBar value={f.score} color={domainColor[f.domain]} height={6} />
@@ -281,7 +281,7 @@ export default function CommandCenterPage() {
       <div className="grid grid-cols-12 gap-4">
         <GlassCard className="col-span-12 lg:col-span-8" hover>
           <SectionTitle
-            title="Predictive Maintenance — Priority Assets"
+            title="Predictive Maintenance - Priority Assets"
             hint={`${predictiveSummary.within7Days} predicted failures within 7 days`}
             right={
               <Link href="/predictive-maintenance" className="text-xs font-medium text-command-300 hover:text-command-200">
@@ -320,7 +320,7 @@ export default function CommandCenterPage() {
                     )}
                   >
                     {p.predictedFailureDays === null
-                      ? '—'
+                      ? '-'
                       : p.predictedFailureDays <= 0
                         ? 'Offline'
                         : `${p.predictedFailureDays}d`}
@@ -368,7 +368,7 @@ export default function CommandCenterPage() {
                     <div className="mb-1 flex items-center justify-between text-xs">
                       <span className="text-slate-300">{floor.name}</span>
                       <span className="data-num text-slate-400">
-                        {o.count}/{o.capacity} · {pct}%
+                        {o.count}/{o.capacity} | {pct}%
                       </span>
                     </div>
                     <HealthBar
@@ -479,7 +479,7 @@ export default function CommandCenterPage() {
                   </span>
                 </div>
                 <p className="mt-1 text-sm text-slate-400">
-                  Explore the 3D facility model — floors, cameras, access control, HVAC and live asset status.
+                  Explore the 3D facility model - floors, cameras, access control, HVAC and live asset status.
                 </p>
               </div>
             </div>

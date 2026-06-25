@@ -26,10 +26,10 @@ interface AssetSeed {
 }
 
 const seeds: AssetSeed[] = [
-  // ---- B1 · Parking & Plant (flr-01) ----
+  // ---- B1 | Parking & Plant (flr-01) ----
   { tag: 'UPS-A1', name: 'UPS System A (Primary)', category: 'UPS', floorIdx: 0, zoneIdx: 3, manufacturer: 'Eaton', model: '93PM-160', installYearsAgo: 3, mtbfDays: 900,
     status: 'critical', healthPct: 41, predictedFailureDays: 4, failureProbability: 0.78,
-    recommendation: 'Replace battery string 2 within 72h — cells exceeding thermal threshold under load.' },
+    recommendation: 'Replace battery string 2 within 72h - cells exceeding thermal threshold under load.' },
   { tag: 'UPS-B1', name: 'UPS System B (Redundant)', category: 'UPS', floorIdx: 0, zoneIdx: 3, manufacturer: 'Eaton', model: '93PM-160', installYearsAgo: 3, mtbfDays: 900 },
   { tag: 'GEN-01', name: 'Standby Diesel Generator', category: 'Electrical', floorIdx: 0, zoneIdx: 3, manufacturer: 'Caterpillar', model: 'C32 1000kVA', installYearsAgo: 3, mtbfDays: 1400 },
   { tag: 'CHL-01', name: 'Chiller Unit 1', category: 'HVAC', floorIdx: 0, zoneIdx: 2, manufacturer: 'Carrier', model: '30XA-802', installYearsAgo: 4, mtbfDays: 700,
@@ -38,14 +38,14 @@ const seeds: AssetSeed[] = [
   { tag: 'CHL-02', name: 'Chiller Unit 2', category: 'HVAC', floorIdx: 0, zoneIdx: 2, manufacturer: 'Carrier', model: '30XA-802', installYearsAgo: 4, mtbfDays: 700 },
   { tag: 'LV-PNL-01', name: 'Main LV Distribution Panel', category: 'Electrical', floorIdx: 0, zoneIdx: 1, manufacturer: 'Schneider', model: 'Blokset', installYearsAgo: 3, mtbfDays: 1600,
     status: 'warning', healthPct: 64, predictedFailureDays: 21, failureProbability: 0.33,
-    recommendation: 'Phase imbalance + elevated busbar temperature detected — thermographic survey advised.' },
+    recommendation: 'Phase imbalance + elevated busbar temperature detected - thermographic survey advised.' },
   { tag: 'TX-01', name: 'Power Transformer T1', category: 'Electrical', floorIdx: 0, zoneIdx: 1, manufacturer: 'ABB', model: 'RESIBLOC 1250', installYearsAgo: 3, mtbfDays: 3000 },
   { tag: 'CAM-B1-01', name: 'Vehicle Bay Camera N', category: 'Camera', floorIdx: 0, zoneIdx: 0, manufacturer: 'Axis', model: 'Q1798-LE', installYearsAgo: 2, mtbfDays: 1800 },
   { tag: 'CAM-B1-02', name: 'Vehicle Bay Camera S', category: 'Camera', floorIdx: 0, zoneIdx: 0, manufacturer: 'Axis', model: 'Q1798-LE', installYearsAgo: 2, mtbfDays: 1800 },
   { tag: 'ACS-GATE-01', name: 'Vehicle Gate Barrier', category: 'AccessControl', floorIdx: 0, zoneIdx: 0, manufacturer: 'HID', model: 'EntryPoint', installYearsAgo: 2, mtbfDays: 1200 },
   { tag: 'SNS-LEAK-01', name: 'Plant Room Leak Sensor', category: 'Sensor', floorIdx: 0, zoneIdx: 2, manufacturer: 'Honeywell', model: 'FS90', installYearsAgo: 1, mtbfDays: 2400 },
 
-  // ---- L1 · Public Services (flr-02) ----
+  // ---- L1 | Public Services (flr-02) ----
   { tag: 'CAM-L1-01', name: 'Reception Camera', category: 'Camera', floorIdx: 1, zoneIdx: 0, manufacturer: 'Axis', model: 'P3268-LV', installYearsAgo: 2, mtbfDays: 1800 },
   { tag: 'CAM-L1-02', name: 'Lobby Atrium Camera', category: 'Camera', floorIdx: 1, zoneIdx: 3, manufacturer: 'Axis', model: 'P3268-LV', installYearsAgo: 2, mtbfDays: 1800 },
   { tag: 'CAM-L1-03', name: 'Screening Lane Camera', category: 'Camera', floorIdx: 1, zoneIdx: 2, manufacturer: 'Axis', model: 'Q3536-LVE', installYearsAgo: 1, mtbfDays: 1800 },
@@ -54,17 +54,17 @@ const seeds: AssetSeed[] = [
   { tag: 'AHU-L1', name: 'Air Handling Unit L1', category: 'HVAC', floorIdx: 1, zoneIdx: 1, manufacturer: 'Daikin', model: 'Modular L', installYearsAgo: 4, mtbfDays: 800 },
   { tag: 'SNS-AIR-L1', name: 'Lobby Air Quality Sensor', category: 'Sensor', floorIdx: 1, zoneIdx: 0, manufacturer: 'Honeywell', model: 'AQ-IAQ', installYearsAgo: 1, mtbfDays: 2400 },
 
-  // ---- L2 · Operations & Dispatch (flr-03) ----
+  // ---- L2 | Operations & Dispatch (flr-03) ----
   { tag: 'CAM-L2-01', name: 'Command Room Camera', category: 'Camera', floorIdx: 2, zoneIdx: 0, manufacturer: 'Axis', model: 'P3268-LV', installYearsAgo: 2, mtbfDays: 1800 },
   { tag: 'CAM-L2-02', name: 'Dispatch Floor Camera', category: 'Camera', floorIdx: 2, zoneIdx: 1, manufacturer: 'Axis', model: 'P3268-LV', installYearsAgo: 2, mtbfDays: 1800,
     status: 'offline', healthPct: 0, predictedFailureDays: 0, failureProbability: 1,
-    recommendation: 'No signal for 38m — PoE port fault suspected. Dispatch to network closet L2.' },
+    recommendation: 'No signal for 38m - PoE port fault suspected. Dispatch to network closet L2.' },
   { tag: 'ACS-C2-01', name: 'Command & Control Door', category: 'AccessControl', floorIdx: 2, zoneIdx: 0, manufacturer: 'HID', model: 'Signo 40', installYearsAgo: 2, mtbfDays: 1200 },
   { tag: 'FIRE-L2', name: 'Fire Alarm Panel L2', category: 'FireSystem', floorIdx: 2, zoneIdx: 2, manufacturer: 'Siemens', model: 'Cerberus PRO', installYearsAgo: 3, mtbfDays: 2200 },
   { tag: 'CRAC-L2', name: 'Precision Cooling L2', category: 'HVAC', floorIdx: 2, zoneIdx: 1, manufacturer: 'Vertiv', model: 'Liebert PCW', installYearsAgo: 3, mtbfDays: 750 },
   { tag: 'NET-SW-L2', name: 'Operations Core Switch', category: 'Network', floorIdx: 2, zoneIdx: 0, manufacturer: 'Cisco', model: 'Catalyst 9500', installYearsAgo: 2, mtbfDays: 2000 },
 
-  // ---- L3 · Investigations (flr-04) ----
+  // ---- L3 | Investigations (flr-04) ----
   { tag: 'CAM-L3-01', name: 'Forensics Lab Camera', category: 'Camera', floorIdx: 3, zoneIdx: 2, manufacturer: 'Axis', model: 'P3268-LV', installYearsAgo: 2, mtbfDays: 1800 },
   { tag: 'CAM-L3-02', name: 'Investigations Corridor Cam', category: 'Camera', floorIdx: 3, zoneIdx: 3, manufacturer: 'Axis', model: 'P3268-LV', installYearsAgo: 2, mtbfDays: 1800 },
   { tag: 'ACS-FOR-01', name: 'Forensics Lab Reader', category: 'AccessControl', floorIdx: 3, zoneIdx: 2, manufacturer: 'HID', model: 'Signo 40', installYearsAgo: 2, mtbfDays: 1200 },
@@ -72,7 +72,7 @@ const seeds: AssetSeed[] = [
   { tag: 'FIRE-L3', name: 'Fire Alarm Panel L3', category: 'FireSystem', floorIdx: 3, zoneIdx: 1, manufacturer: 'Siemens', model: 'Cerberus PRO', installYearsAgo: 3, mtbfDays: 2200 },
   { tag: 'AHU-L3', name: 'Air Handling Unit L3', category: 'HVAC', floorIdx: 3, zoneIdx: 0, manufacturer: 'Daikin', model: 'Modular L', installYearsAgo: 4, mtbfDays: 800 },
 
-  // ---- L4 · Detention (flr-05) ----
+  // ---- L4 | Detention (flr-05) ----
   { tag: 'CAM-L4-01', name: 'Cellblock A Camera', category: 'Camera', floorIdx: 4, zoneIdx: 0, manufacturer: 'Axis', model: 'Q3536-LVE', installYearsAgo: 1, mtbfDays: 1800 },
   { tag: 'CAM-L4-02', name: 'Cellblock B Camera', category: 'Camera', floorIdx: 4, zoneIdx: 1, manufacturer: 'Axis', model: 'Q3536-LVE', installYearsAgo: 1, mtbfDays: 1800 },
   { tag: 'CAM-L4-03', name: 'Booking Area Camera', category: 'Camera', floorIdx: 4, zoneIdx: 2, manufacturer: 'Axis', model: 'Q3536-LVE', installYearsAgo: 1, mtbfDays: 1800 },
@@ -80,17 +80,17 @@ const seeds: AssetSeed[] = [
   { tag: 'ACS-CBB-01', name: 'Cellblock B Sallyport', category: 'AccessControl', floorIdx: 4, zoneIdx: 1, manufacturer: 'HID', model: 'Signo 40', installYearsAgo: 2, mtbfDays: 1100 },
   { tag: 'FIRE-L4', name: 'Fire Alarm Panel L4', category: 'FireSystem', floorIdx: 4, zoneIdx: 3, manufacturer: 'Siemens', model: 'Cerberus PRO', installYearsAgo: 3, mtbfDays: 2200,
     status: 'warning', healthPct: 62, predictedFailureDays: 18, failureProbability: 0.4,
-    recommendation: 'Loop 3 reporting intermittent device faults — inspect detector bases in Booking.' },
+    recommendation: 'Loop 3 reporting intermittent device faults - inspect detector bases in Booking.' },
   { tag: 'AHU-L4', name: 'Air Handling Unit L4', category: 'HVAC', floorIdx: 4, zoneIdx: 3, manufacturer: 'Daikin', model: 'Modular L', installYearsAgo: 4, mtbfDays: 800 },
   { tag: 'SNS-DUR-L4', name: 'Booking Duress System', category: 'Sensor', floorIdx: 4, zoneIdx: 2, manufacturer: 'Honeywell', model: 'DR-100', installYearsAgo: 1, mtbfDays: 2400 },
 
-  // ---- L5 · Secure Core (flr-06) ----
+  // ---- L5 | Secure Core (flr-06) ----
   { tag: 'CAM-L5-01', name: 'Data Center Camera', category: 'Camera', floorIdx: 5, zoneIdx: 0, manufacturer: 'Axis', model: 'P3268-LV', installYearsAgo: 1, mtbfDays: 1800 },
   { tag: 'CAM-L5-02', name: 'Evidence Vault Camera', category: 'Camera', floorIdx: 5, zoneIdx: 1, manufacturer: 'Axis', model: 'Q3536-LVE', installYearsAgo: 1, mtbfDays: 1800 },
   { tag: 'CAM-L5-03', name: 'Armory Camera', category: 'Camera', floorIdx: 5, zoneIdx: 2, manufacturer: 'Axis', model: 'Q3536-LVE', installYearsAgo: 1, mtbfDays: 1800 },
   { tag: 'ACS-VLT-01', name: 'Evidence Vault Reader', category: 'AccessControl', floorIdx: 5, zoneIdx: 1, manufacturer: 'HID', model: 'iCLASS SE', installYearsAgo: 2, mtbfDays: 1100,
     status: 'critical', healthPct: 47, predictedFailureDays: 6, failureProbability: 0.6,
-    recommendation: 'Reader returning repeated read errors + 4 access denials in 1h — replace head, audit logs.' },
+    recommendation: 'Reader returning repeated read errors + 4 access denials in 1h - replace head, audit logs.' },
   { tag: 'ACS-ARM-01', name: 'Armory Reader', category: 'AccessControl', floorIdx: 5, zoneIdx: 2, manufacturer: 'HID', model: 'iCLASS SE', installYearsAgo: 2, mtbfDays: 1100 },
   { tag: 'ACS-DC-01', name: 'Data Center Door', category: 'AccessControl', floorIdx: 5, zoneIdx: 0, manufacturer: 'HID', model: 'iCLASS SE', installYearsAgo: 2, mtbfDays: 1100 },
   { tag: 'FIRE-L5', name: 'Clean-Agent Suppression', category: 'FireSystem', floorIdx: 5, zoneIdx: 0, manufacturer: 'Kidde', model: 'ECS Novec 1230', installYearsAgo: 2, mtbfDays: 2600 },

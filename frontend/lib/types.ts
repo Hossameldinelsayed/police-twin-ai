@@ -1,5 +1,5 @@
 // ============================================================================
-// POLICE TWIN AI — Core domain types
+// POLICE TWIN AI - Core domain types
 // Shared data contracts for the entire platform (frontend + backend mirror).
 // ============================================================================
 

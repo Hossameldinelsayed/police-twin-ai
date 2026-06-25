@@ -1,7 +1,7 @@
 import type { Building, Floor, Zone } from '../types';
 
 // ============================================================================
-// Facility model — "Central Command HQ", a smart police headquarters.
+// Facility model - "Central Command HQ", a smart police headquarters.
 // 6 levels (1 basement + ground + 4 upper), each with operational zones.
 // Coordinates are normalized layout units used by the 3D Digital Twin.
 // ============================================================================
@@ -35,7 +35,7 @@ interface FloorSeed {
 const floorSeeds: FloorSeed[] = [
   {
     level: -1,
-    name: 'B1 · Parking & Plant',
+    name: 'B1 | Parking & Plant',
     areaSqm: 9200,
     capacity: 60,
     zones: [
@@ -47,7 +47,7 @@ const floorSeeds: FloorSeed[] = [
   },
   {
     level: 0,
-    name: 'L1 · Public Services',
+    name: 'L1 | Public Services',
     areaSqm: 7600,
     capacity: 320,
     zones: [
@@ -59,7 +59,7 @@ const floorSeeds: FloorSeed[] = [
   },
   {
     level: 1,
-    name: 'L2 · Operations & Dispatch',
+    name: 'L2 | Operations & Dispatch',
     areaSqm: 7200,
     capacity: 180,
     zones: [
@@ -71,7 +71,7 @@ const floorSeeds: FloorSeed[] = [
   },
   {
     level: 2,
-    name: 'L3 · Investigations',
+    name: 'L3 | Investigations',
     areaSqm: 6800,
     capacity: 150,
     zones: [
@@ -83,7 +83,7 @@ const floorSeeds: FloorSeed[] = [
   },
   {
     level: 3,
-    name: 'L4 · Detention',
+    name: 'L4 | Detention',
     areaSqm: 6000,
     capacity: 96,
     zones: [
@@ -95,7 +95,7 @@ const floorSeeds: FloorSeed[] = [
   },
   {
     level: 4,
-    name: 'L5 · Secure Core',
+    name: 'L5 | Secure Core',
     areaSqm: 6000,
     capacity: 60,
     zones: [
@@ -144,11 +144,11 @@ export function zoneById(id: string | null): Zone | undefined {
 }
 
 export function zoneName(id: string | null): string {
-  if (!id) return '—';
+  if (!id) return '-';
   return zoneById(id)?.name ?? id;
 }
 
-// 3D layout helpers — each floor occupies a slab in Y. Footprint is a grid.
+// 3D layout helpers - each floor occupies a slab in Y. Footprint is a grid.
 export const FLOOR_GAP = 2.6;
 export const FOOTPRINT = { w: 16, d: 10 }; // x by z
 

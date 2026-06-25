@@ -1,7 +1,7 @@
 import { MapPin, Navigation, Radio } from 'lucide-react';
 import { building } from '@/lib/data/facility';
 
-// Self-contained "tactical" geo-locator — pure SVG, no external map tiles,
+// Self-contained "tactical" geo-locator - pure SVG, no external map tiles,
 // no API keys, works fully offline. On-brand for a command center.
 
 interface SitePin {
@@ -116,9 +116,9 @@ export function FacilityLocator() {
       <div className="mt-3 flex items-center justify-between border-t border-white/5 pt-3 text-xs">
         <span className="flex items-center gap-1.5 text-slate-500">
           <Radio className="h-3.5 w-3.5 text-emerald-300" />
-          {sites.filter((s) => s.status === 'online').length} sites online · {sites.length} in network
+          {sites.filter((s) => s.status === 'online').length} sites online | {sites.length} in network
         </span>
-        <span className="text-slate-600">Smart City mesh · Sector 7</span>
+        <span className="text-slate-600">Smart City mesh | Sector 7</span>
       </div>
     </div>
   );

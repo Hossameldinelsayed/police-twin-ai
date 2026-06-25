@@ -8,9 +8,9 @@ export default function DigitalTwinPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        eyebrow="Module 02 · Interactive Digital Twin"
+        eyebrow="Module 02 | Interactive Digital Twin"
         title="3D Facility Model"
-        subtitle={`Live spatial model of ${building.name} — ${building.floors} floors, ${assetCounts.total} connected assets. Rotate, zoom and select any device.`}
+        subtitle={`Live spatial model of ${building.name} - ${building.floors} floors, ${assetCounts.total} connected assets. Rotate, zoom and select any device.`}
         icon={<Boxes className="h-5 w-5" />}
         actions={<LiveBadge />}
       />

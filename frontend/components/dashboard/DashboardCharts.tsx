@@ -281,10 +281,10 @@ export function DashboardCharts() {
         </GlassCard>
       </div>
 
-      {/* Combined overview — full width */}
+      {/* Combined overview - full width */}
       <GlassCard className="col-span-12" hover>
         <SectionTitle
-          title="Risk vs Asset Health — Correlated View"
+          title="Risk vs Asset Health - Correlated View"
           hint="Rising risk tracks declining fleet health"
           right={
             <div className="hidden items-center gap-3 sm:flex">
@@ -401,10 +401,10 @@ export function DashboardCharts() {
         </GlassCard>
       </div>
 
-      {/* 24h occupancy — full width */}
+      {/* 24h occupancy - full width */}
       <GlassCard className="col-span-12" hover>
         <SectionTitle
-          title="Building Occupancy — 24 Hour Profile"
+          title="Building Occupancy - 24 Hour Profile"
           hint="People on-site by hour, building-wide"
           right={
             <ValueChip>

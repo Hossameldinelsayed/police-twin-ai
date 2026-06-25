@@ -198,7 +198,7 @@ export function EmergencySimulator() {
       <div>
         <SectionTitle
           title="Crisis Scenario Library"
-          hint="Pre-modeled drills · select to load the response playbook"
+          hint="Pre-modeled drills | select to load the response playbook"
           right={
             <span className="chip border-white/[0.08] bg-white/[0.03] text-slate-400">
               <Radio className="h-3 w-3" /> {emergencyScenarios.length} scenarios
@@ -366,7 +366,7 @@ export function EmergencySimulator() {
             <div className="relative mt-5">
               <div className="mb-1.5 flex items-center justify-between text-xs">
                 <span className="text-slate-500">
-                  Response progress ·{' '}
+                  Response progress | {' '}
                   <span className="data-num text-slate-300">
                     {Math.min(activeStep, totalSteps)}/{totalSteps}
                   </span>{' '}
@@ -400,7 +400,7 @@ export function EmergencySimulator() {
                   >
                     <Check className="h-4 w-4 shrink-0" />
                     <span>
-                      Response complete — all {totalSteps} steps executed. Estimated recovery{' '}
+                      Response complete - all {totalSteps} steps executed. Estimated recovery{' '}
                       <span className="data-num font-semibold text-emerald-100">
                         {formatDuration(scenario.estimatedRecoveryMinutes)}
                       </span>
@@ -469,7 +469,7 @@ export function EmergencySimulator() {
             <GlassCard className="col-span-12 lg:col-span-7" hover>
               <SectionTitle
                 title="Response Playbook"
-                hint={`${totalSteps} orchestrated steps · ${automatedCount} automated`}
+                hint={`${totalSteps} orchestrated steps | ${automatedCount} automated`}
                 right={
                   <div className="flex items-center gap-2">
                     <span className="chip border-command-500/25 bg-command-500/10 text-command-300">

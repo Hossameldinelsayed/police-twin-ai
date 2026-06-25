@@ -60,7 +60,7 @@ export default function CopilotPage() {
       label: 'Facility Risk',
       value: `${riskAssessment.score}`,
       accent: riskMeta.text,
-      detail: `${riskAssessment.category} · +${riskAssessment.trendDelta} pts/7d`,
+      detail: `${riskAssessment.category} | +${riskAssessment.trendDelta} pts/7d`,
     },
     {
       icon: BellRing,
@@ -95,9 +95,9 @@ export default function CopilotPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        eyebrow="Module 03 · AI Facility Copilot"
+        eyebrow="Module 03 | AI Facility Copilot"
         title="Facility Copilot"
-        subtitle="Conversational intelligence grounded on the live state of Central Command HQ — query risk, alarms, energy, occupancy and predictive maintenance in natural language."
+        subtitle="Conversational intelligence grounded on the live state of Central Command HQ - query risk, alarms, energy, occupancy and predictive maintenance in natural language."
         icon={<Bot className="h-5 w-5" />}
         actions={<LiveBadge />}
       />
@@ -122,7 +122,7 @@ export default function CopilotPage() {
             </div>
 
             <p className="mb-4 text-xs leading-relaxed text-slate-500">
-              Every answer is computed against this real-time snapshot — no stale data, no guesswork.
+              Every answer is computed against this real-time snapshot - no stale data, no guesswork.
             </p>
 
             <div className="space-y-2">
@@ -176,7 +176,7 @@ export default function CopilotPage() {
               <span className="chip border-cognition-500/25 bg-cognition-500/[0.08] text-cognition-200">
                 {Math.round(riskAssessment.confidence * 100)}% model confidence
               </span>
-              <span>grounded · auditable · cited</span>
+              <span>grounded | auditable | cited</span>
             </div>
           </GlassCard>
         </FadeIn>

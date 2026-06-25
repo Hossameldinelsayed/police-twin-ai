@@ -18,7 +18,7 @@ import { clamp, round, riskCategoryFromScore, NOW_ISO } from '../utils';
 // ============================================================================
 // AI RISK ENGINE
 // Composite, explainable facility risk score from four weighted domains:
-//   equipment · security · energy · occupancy
+//   equipment | security | energy | occupancy
 // Each domain produces a 0-100 sub-score with traceable signals; the overall
 // score is a weighted blend. Fully deterministic & auditable.
 // ============================================================================
@@ -233,5 +233,5 @@ export function computeRiskAssessment(): RiskAssessment {
   };
 }
 
-// Computed once — single source of truth across the app.
+// Computed once - single source of truth across the app.
 export const riskAssessment: RiskAssessment = computeRiskAssessment();

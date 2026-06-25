@@ -91,9 +91,9 @@ export default function RiskEnginePage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        eyebrow="Module 04 · AI Risk Engine"
+        eyebrow="Module 04 | AI Risk Engine"
         title="Facility Risk Intelligence"
-        subtitle="Explainable, weighted risk scoring across equipment, security, energy and occupancy — every point traceable to a live signal."
+        subtitle="Explainable, weighted risk scoring across equipment, security, energy and occupancy - every point traceable to a live signal."
         icon={<Gauge className="h-5 w-5" />}
         actions={<LiveBadge />}
       />
@@ -121,7 +121,7 @@ export default function RiskEnginePage() {
                 >
                   <DeltaIcon className="h-3 w-3" />
                   {trendDelta > 0 ? '+' : ''}
-                  {trendDelta} pts · 7d
+                  {trendDelta} pts | 7d
                 </span>
               </div>
               <p className="text-sm leading-relaxed text-slate-200">{summary}</p>
@@ -185,7 +185,7 @@ export default function RiskEnginePage() {
                       <div>
                         <div className="text-sm font-semibold text-slate-100">{f.label}</div>
                         <div className="text-[11px] uppercase tracking-wider text-slate-500">
-                          {Math.round(f.weight * 100)}% weight · {f.contribution} pts contributed
+                          {Math.round(f.weight * 100)}% weight | {f.contribution} pts contributed
                         </div>
                       </div>
                     </div>
@@ -283,7 +283,7 @@ export default function RiskEnginePage() {
           <div className="mb-4 flex items-start gap-3 rounded-xl border border-command-500/20 bg-command-500/[0.06] p-3">
             <BookOpenCheck className="mt-0.5 h-4 w-4 shrink-0 text-command-300" />
             <p className="text-xs leading-relaxed text-slate-300">
-              The composite index is a fixed weighted blend of four domain sub-scores —{' '}
+              The composite index is a fixed weighted blend of four domain sub-scores -{' '}
               <span className="data-num text-slate-200">
                 overall = Σ (score<sub>i</sub> × weight<sub>i</sub>)
               </span>
@@ -325,8 +325,8 @@ export default function RiskEnginePage() {
           </div>
           <div className="mt-3 flex items-center gap-2 border-t border-white/5 pt-3 text-[11px] text-slate-500">
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-300" />
-            Sub-scores clamped 0–100 · category thresholds: Low &lt;22 · Guarded &lt;40 · Elevated
-            &lt;58 · High &lt;78 · Severe ≥78
+            Sub-scores clamped 0-100 | category thresholds: Low &lt;22 | Guarded &lt;40 | Elevated
+            &lt;58 | High &lt;78 | Severe ≥78
           </div>
         </GlassCard>
       </div>

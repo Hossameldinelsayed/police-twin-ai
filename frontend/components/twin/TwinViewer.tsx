@@ -158,7 +158,7 @@ export function TwinViewer() {
             </span>
           </div>
           <div className="absolute bottom-4 left-4 z-10 hidden text-[11px] text-slate-500 sm:block">
-            Drag to rotate · Scroll to zoom · Click a marker for detail
+            Drag to rotate | Scroll to zoom | Click a marker for detail
           </div>
           <div className="h-full w-full">
             <FacilityScene

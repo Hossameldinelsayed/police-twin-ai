@@ -81,7 +81,7 @@ export function Sidebar() {
         <div className="mt-3 flex items-center justify-between border-t border-white/5 pt-2.5">
           <span className="text-[11px] text-slate-500">Risk index</span>
           <span className="data-num text-sm font-semibold" style={{ color: meta.hex }}>
-            {kpiSummary.riskScore} · {kpiSummary.riskCategory}
+            {kpiSummary.riskScore} | {kpiSummary.riskCategory}
           </span>
         </div>
       </div>

@@ -47,7 +47,7 @@ function riskIntent(): CopilotResponse {
       `${top[0].label.toLowerCase()} and ${top[1].label.toLowerCase()} risk. Here's the breakdown:`,
     bullets: top.map(
       (f) =>
-        `**${f.label}** — ${f.score}/100 (${f.contribution} pts to overall). ${f.detail}`,
+        `**${f.label}** - ${f.score}/100 (${f.contribution} pts to overall). ${f.detail}`,
     ),
     citations: [
       { label: 'Risk score', value: `${riskAssessment.score} / 100 (${riskAssessment.category})` },
@@ -69,12 +69,12 @@ function alarmsIntent(): CopilotResponse {
       .slice(0, 5)
       .map(
         (a) =>
-          `**[${a.severity.toUpperCase()}] ${a.title}** — ${floorName(a.floorId)} · ${relativeTime(a.timestamp)} (${a.source})`,
+          `**[${a.severity.toUpperCase()}] ${a.title}** - ${floorName(a.floorId)} | ${relativeTime(a.timestamp)} (${a.source})`,
       ),
     citations: [
       { label: 'Active alarms', value: `${activeAlarms.length}` },
       { label: 'Critical / high', value: `${crit.length}` },
-      { label: 'Top source', value: crit[0]?.source ?? '—' },
+      { label: 'Top source', value: crit[0]?.source ?? '-' },
     ],
     followUps: ['Why is risk level high today?', 'Which assets require maintenance?', 'What happened during the last 24 hours?'],
   };
@@ -94,7 +94,7 @@ function maintenanceIntent(): CopilotResponse {
           : p.predictedFailureDays <= 0
             ? 'failed / offline'
             : `~${p.predictedFailureDays}d to predicted failure`;
-      return `**${p.assetTag} — ${p.assetName}** (${p.floorName}) · health ${p.healthPct}% · ${when}. ${p.recommendation}`;
+      return `**${p.assetTag} - ${p.assetName}** (${p.floorName}) | health ${p.healthPct}% | ${when}. ${p.recommendation}`;
     }),
     citations: [
       { label: 'Assets at risk', value: `${predictiveSummary.atRisk}` },
@@ -113,14 +113,14 @@ function last24hIntent(): CopilotResponse {
   return {
     intent: 'last_24h',
     answer:
-      `In the last 24 hours, **${alarms.length} events** were logged across the facility — ` +
+      `In the last 24 hours, **${alarms.length} events** were logged across the facility - ` +
       `**${activeAlarms.length} still active**, ${alarms.filter((a) => a.status === 'acknowledged').length} acknowledged, ${resolved} auto-resolved. ` +
       `Timeline of notable events:`,
     bullets: recent
       .slice(0, 6)
       .map(
         (a) =>
-          `**${relativeTime(a.timestamp)}** — [${a.status}] ${a.title} (${floorName(a.floorId)})`,
+          `**${relativeTime(a.timestamp)}** - [${a.status}] ${a.title} (${floorName(a.floorId)})`,
       ),
     citations: [
       { label: 'Total events', value: `${alarms.length}` },
@@ -136,9 +136,9 @@ function energyIntent(): CopilotResponse {
     intent: 'energy',
     answer:
       `Current facility draw is **${formatNumber(currentPowerKw)} kW**. Consumption today is **${formatKwh(energyTodayKwh)}**, ` +
-      `running **${energyDeltaPct >= 0 ? '+' : ''}${energyDeltaPct}%** vs the AI baseline — the gap is attributed to HVAC plant overdraw. Breakdown:`,
+      `running **${energyDeltaPct >= 0 ? '+' : ''}${energyDeltaPct}%** vs the AI baseline - the gap is attributed to HVAC plant overdraw. Breakdown:`,
     bullets: energyBreakdown.map(
-      (b) => `**${b.category}** — ${formatKwh(b.kwh)} (${b.pctOfTotal}% of total)`,
+      (b) => `**${b.category}** - ${formatKwh(b.kwh)} (${b.pctOfTotal}% of total)`,
     ),
     citations: [
       { label: 'Live power', value: `${formatNumber(currentPowerKw)} kW` },
@@ -156,13 +156,13 @@ function occupancyIntent(): CopilotResponse {
     answer:
       `Current occupancy is **${formatNumber(occupancyTotal)} people** (${occupancyPct}% of ${formatNumber(occupancyCapacity)} capacity). ` +
       (anomalies.length
-        ? `⚠️ **${anomalies.length} occupancy anomaly** detected — after-hours presence in a critical zone.`
+        ? `⚠️ **${anomalies.length} occupancy anomaly** detected - after-hours presence in a critical zone.`
         : `No occupancy anomalies detected.`),
     bullets: occupancyZonePoints
       .slice(0, 6)
       .map(
         (z) =>
-          `**${z.zoneName}** — ${z.count}/${z.capacity}${z.anomaly ? '  ⚠️ anomaly (verify against roster)' : ''}`,
+          `**${z.zoneName}** - ${z.count}/${z.capacity}${z.anomaly ? '  ⚠️ anomaly (verify against roster)' : ''}`,
       ),
     citations: [
       { label: 'Occupancy', value: `${formatNumber(occupancyTotal)} (${occupancyPct}%)` },
@@ -181,7 +181,7 @@ function recommendationsIntent(): CopilotResponse {
       `**${riskAssessment.score}** toward target. Estimated combined reduction: **${riskAssessment.recommendations
         .reduce((s, r) => s + Math.abs(parseInt(r.impact)), 0)} pts**.`,
     bullets: riskAssessment.recommendations.map(
-      (r) => `**[${r.priority.toUpperCase()}] ${r.action}** — ${r.rationale} _(impact ${r.impact})_`,
+      (r) => `**[${r.priority.toUpperCase()}] ${r.action}** - ${r.rationale} _(impact ${r.impact})_`,
     ),
     citations: [
       { label: 'Actions', value: `${riskAssessment.recommendations.length}` },
@@ -200,7 +200,7 @@ function statusIntent(): CopilotResponse {
       `occupancy **${occupancyPct}%**, energy **${energyDeltaPct >= 0 ? '+' : ''}${energyDeltaPct}%** vs baseline. Snapshot:`,
     bullets: [
       `Risk: ${riskAssessment.score}/100 (${riskAssessment.category}), trend +${riskAssessment.trendDelta} this week`,
-      `Assets: ${assetCounts.critical} critical · ${assetCounts.warning} warning · ${assetCounts.offline} offline`,
+      `Assets: ${assetCounts.critical} critical | ${assetCounts.warning} warning | ${assetCounts.offline} offline`,
       `Maintenance: ${predictiveSummary.within7Days} predicted failures within 7 days`,
       `Energy: ${formatKwh(energyTodayKwh)} today (${energyDeltaPct >= 0 ? '+' : ''}${energyDeltaPct}% vs baseline)`,
     ],
@@ -245,12 +245,12 @@ export function copilotRespond(query: string): CopilotResponse {
 
   if (best && bestScore > 0) return best.handler();
 
-  // Fallback — graceful, capability-revealing answer.
+  // Fallback - graceful, capability-revealing answer.
   return {
     intent: 'fallback',
     answer:
       `I can reason over live facility intelligence for **${building.name}**. I didn't catch a specific request, ` +
-      `but here's the current picture — risk is **${riskAssessment.category} (${riskAssessment.score})** with ` +
+      `but here's the current picture - risk is **${riskAssessment.category} (${riskAssessment.score})** with ` +
       `**${activeAlarms.length} active alarms**. Try one of the questions below.`,
     bullets: suggestedQuestions.map((q) => `“${q}”`),
     citations: [

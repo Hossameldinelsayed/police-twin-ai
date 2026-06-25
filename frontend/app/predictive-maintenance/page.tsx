@@ -46,10 +46,10 @@ const priorityInsights = predictiveInsights.slice(0, 5);
 
 // Health distribution bands across the full asset fleet.
 const healthBands = [
-  { name: 'Critical', range: '0–40', min: 0, max: 40, color: '#EF4444' },
-  { name: 'Poor', range: '40–60', min: 40, max: 60, color: '#F97316' },
-  { name: 'Fair', range: '60–80', min: 60, max: 80, color: '#F4C152' },
-  { name: 'Good', range: '80–100', min: 80, max: 101, color: '#10B981' },
+  { name: 'Critical', range: '0-40', min: 0, max: 40, color: '#EF4444' },
+  { name: 'Poor', range: '40-60', min: 40, max: 60, color: '#F97316' },
+  { name: 'Fair', range: '60-80', min: 60, max: 80, color: '#F4C152' },
+  { name: 'Good', range: '80-100', min: 80, max: 101, color: '#10B981' },
 ];
 
 const healthDistribution = healthBands.map((b) => ({
@@ -104,7 +104,7 @@ const mxStatusMeta: Record<MaintenanceStatus, { label: string; cls: string }> = 
 };
 
 function daysLabel(days: number | null) {
-  if (days === null) return '—';
+  if (days === null) return '-';
   if (days <= 0) return 'Offline';
   return `${days}d`;
 }
@@ -117,9 +117,9 @@ export default function PredictiveMaintenancePage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        eyebrow="Module 05 · Predictive Maintenance"
+        eyebrow="Module 05 | Predictive Maintenance"
         title="Predictive Maintenance"
-        subtitle="AI-driven asset health, failure forecasting and work-order orchestration across the facility fleet — catching faults before they become outages."
+        subtitle="AI-driven asset health, failure forecasting and work-order orchestration across the facility fleet - catching faults before they become outages."
         icon={<Wrench className="h-5 w-5" />}
         actions={<LiveBadge />}
       />
@@ -364,7 +364,7 @@ export default function PredictiveMaintenancePage() {
       <GlassCard>
         <SectionTitle
           title="Work Orders"
-          hint={`${openWorkOrders} open · ${overdueWorkOrders} overdue · ${maintenanceEvents.length} total`}
+          hint={`${openWorkOrders} open | ${overdueWorkOrders} overdue | ${maintenanceEvents.length} total`}
           right={
             overdueWorkOrders > 0 ? (
               <span className="chip border-red-500/30 bg-red-500/10 text-red-300">
@@ -406,7 +406,7 @@ export default function PredictiveMaintenancePage() {
                       {wo.title}
                     </div>
                     <div className="mt-0.5 text-xs text-slate-500">
-                      <span className="text-slate-400">{wo.assetName}</span> · {wo.description}
+                      <span className="text-slate-400">{wo.assetName}</span> | {wo.description}
                     </div>
                   </div>
 

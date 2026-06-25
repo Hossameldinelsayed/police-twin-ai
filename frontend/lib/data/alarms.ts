@@ -40,7 +40,7 @@ const seeds: AlarmSeed[] = [
   {
     type: 'access',
     severity: 'high',
-    title: 'Repeated access denials — Evidence Vault',
+    title: 'Repeated access denials - Evidence Vault',
     message:
       '4 denied credential reads in 60 minutes at Evidence Vault reader. Reader head returning errors.',
     assetTag: 'ACS-VLT-01',
@@ -51,7 +51,7 @@ const seeds: AlarmSeed[] = [
   {
     type: 'network',
     severity: 'high',
-    title: 'Camera signal lost — Dispatch Floor',
+    title: 'Camera signal lost - Dispatch Floor',
     message: 'Dispatch Floor Camera offline for 38 minutes. Suspected PoE port fault on L2.',
     assetTag: 'CAM-L2-02',
     status: 'active',
@@ -81,7 +81,7 @@ const seeds: AlarmSeed[] = [
   {
     type: 'security',
     severity: 'medium',
-    title: 'Tailgating detected — Main Entrance',
+    title: 'Tailgating detected - Main Entrance',
     message: 'Analytics flagged a tailgating event at main turnstiles. Clip forwarded to watch desk.',
     assetTag: 'ACS-ENT-01',
     status: 'active',
@@ -111,7 +111,7 @@ const seeds: AlarmSeed[] = [
   {
     type: 'access',
     severity: 'low',
-    title: 'Door held open — Forensics Lab',
+    title: 'Door held open - Forensics Lab',
     message: 'Forensics Lab door held open beyond 45s threshold. Auto-resolved on closure.',
     assetTag: 'ACS-FOR-01',
     status: 'acknowledged',
@@ -122,7 +122,7 @@ const seeds: AlarmSeed[] = [
   {
     type: 'environmental',
     severity: 'low',
-    title: 'Elevated CO₂ — Lobby Atrium',
+    title: 'Elevated CO₂ - Lobby Atrium',
     message: 'Lobby CO₂ reached 1,180 ppm during peak public hours. Ventilation boosted automatically.',
     assetTag: 'SNS-AIR-L1',
     status: 'acknowledged',

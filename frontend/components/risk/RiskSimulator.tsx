@@ -17,7 +17,7 @@ import type { LucideIcon } from 'lucide-react';
 import type { RiskFactor } from '@/lib/types';
 import { cn, riskCategoryFromScore, riskCategoryMeta, round } from '@/lib/utils';
 
-// Same weights as the production risk engine — keep in lockstep.
+// Same weights as the production risk engine - keep in lockstep.
 const WEIGHTS: Record<RiskFactor['domain'], number> = {
   equipment: 0.4,
   security: 0.3,
@@ -165,7 +165,7 @@ export function RiskSimulator({ factors, baseline }: RiskSimulatorProps) {
                     </span>
                     <span className="text-sm font-medium text-slate-200">{f.label}</span>
                     <span className="text-[11px] text-slate-600">
-                      · {Math.round(WEIGHTS[f.domain] * 100)}% weight
+ | {Math.round(WEIGHTS[f.domain] * 100)}% weight
                     </span>
                   </div>
                   <div className="flex items-baseline gap-2">

@@ -9,7 +9,7 @@ import { copilotRespond, suggestedQuestions } from '@/lib/ai';
 import { cn } from '@/lib/utils';
 
 // ---------------------------------------------------------------------------
-// Rich text — split on **bold** markdown and wrap odd segments.
+// Rich text - split on **bold** markdown and wrap odd segments.
 // ---------------------------------------------------------------------------
 function renderRich(text: string): ReactNode[] {
   return text.split('**').map((seg, i) =>
@@ -34,7 +34,7 @@ const WELCOME: ChatMessage = {
   id: 'welcome',
   role: 'assistant',
   text:
-    "I'm your **AI Facility Copilot**, grounded on the live state of Central Command HQ — risk model, alarms, telemetry and predictive maintenance. Ask me anything, or start with one of these:",
+    "I'm your **AI Facility Copilot**, grounded on the live state of Central Command HQ - risk model, alarms, telemetry and predictive maintenance. Ask me anything, or start with one of these:",
 };
 
 // ---------------------------------------------------------------------------
@@ -96,7 +96,7 @@ function ResponseBody({
 }
 
 // ---------------------------------------------------------------------------
-// Typing indicator — three pulsing dots
+// Typing indicator - three pulsing dots
 // ---------------------------------------------------------------------------
 function TypingIndicator() {
   return (
@@ -170,7 +170,7 @@ export function CopilotChat({ className }: { className?: string }) {
     setInput('');
     setThinking(true);
 
-    // Deterministic-ish latency between 600–900ms (no Math.random at module scope).
+    // Deterministic-ish latency between 600-900ms (no Math.random at module scope).
     const delay = 600 + (query.length % 4) * 75;
     timerRef.current = setTimeout(() => {
       const response = copilotRespond(query);
@@ -307,7 +307,7 @@ export function CopilotChat({ className }: { className?: string }) {
           </button>
         </form>
         <p className="mt-2 px-1 text-[11px] text-slate-600">
-          Responses are generated from live facility telemetry · {suggestedQuestions.length} suggested prompts available
+          Responses are generated from live facility telemetry | {suggestedQuestions.length} suggested prompts available
         </p>
       </div>
     </div>

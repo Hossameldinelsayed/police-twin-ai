@@ -270,7 +270,7 @@ export function AssetHealthTable({ className }: { className?: string }) {
                                 : 'text-slate-300',
                       )}
                     >
-                      {days === null ? '—' : days <= 0 ? 'Offline' : `${days}d`}
+                      {days === null ? '-' : days <= 0 ? 'Offline' : `${days}d`}
                     </span>
                   </td>
                 </tr>

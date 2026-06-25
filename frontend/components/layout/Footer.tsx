@@ -13,11 +13,11 @@ export function Footer() {
           <span className="font-medium tracking-tight text-slate-400">
             POLICE<span className="text-command-400/80"> TWIN</span> AI
           </span>
-          <span className="text-slate-700">·</span>
+          <span className="text-slate-700"> | </span>
           <span className="tracking-tight">© {year}</span>
         </div>
         <div className="text-slate-600">
-          Executive demonstration build · all data &amp; AI are simulated
+          Executive demonstration build | all data &amp; AI are simulated
         </div>
       </div>
     </footer>

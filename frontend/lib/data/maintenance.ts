@@ -3,7 +3,7 @@ import { assets } from './assets';
 import { isoPlusDays, isoMinusDays } from '../utils';
 
 // ============================================================================
-// Maintenance work orders — predictive (AI-generated), preventive, corrective.
+// Maintenance work orders - predictive (AI-generated), preventive, corrective.
 // ============================================================================
 
 interface MxSeed {
@@ -49,7 +49,7 @@ const seeds: MxSeed[] = [
     status: 'in_progress',
     priority: 'high',
     title: 'Restore Dispatch Floor camera',
-    description: 'Camera offline — suspected PoE switch port fault. Swap port / patch lead.',
+    description: 'Camera offline - suspected PoE switch port fault. Swap port / patch lead.',
     dueInDays: 0,
     technician: 'IT NetOps',
     estimatedHours: 1.5,
@@ -96,7 +96,7 @@ const seeds: MxSeed[] = [
     kind: 'predictive',
     status: 'scheduled',
     priority: 'high',
-    title: 'Thermographic survey — Main LV panel',
+    title: 'Thermographic survey - Main LV panel',
     description: 'Phase imbalance + busbar heating. Infrared survey and torque check on connections.',
     dueInDays: 12,
     technician: 'Electrical Contractor',
@@ -144,8 +144,8 @@ const seeds: MxSeed[] = [
     kind: 'preventive',
     status: 'completed',
     priority: 'low',
-    title: 'Monthly fire detector test — L3',
-    description: 'All loop 1–2 devices passed scheduled functional test.',
+    title: 'Monthly fire detector test - L3',
+    description: 'All loop 1-2 devices passed scheduled functional test.',
     dueInDays: -1,
     technician: 'Fire Systems Co.',
     estimatedHours: 2,

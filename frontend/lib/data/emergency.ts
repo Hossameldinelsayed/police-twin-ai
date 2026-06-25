@@ -10,17 +10,17 @@ export const emergencyScenarios: EmergencyScenario[] = [
   {
     id: 'scn-fire',
     type: 'fire',
-    name: 'Fire — Primary Data Center (L5)',
+    name: 'Fire - Primary Data Center (L5)',
     severity: 'critical',
     description:
       'Smoke detected in the L5 Primary Data Center. Clean-agent suppression armed. Risk to evidence systems and core operations.',
     triggerNarrative:
       'VESDA aspirating detector + thermal camera correlate a smoke signature at rack row C. Fire panel L5 escalates to alarm.',
     impactedZones: [
-      { zoneId: 'flr-06-z1', zoneName: 'Primary Data Center', floorName: 'L5 · Secure Core', impact: 'severe' },
-      { zoneId: 'flr-06-z2', zoneName: 'Evidence Vault', floorName: 'L5 · Secure Core', impact: 'major' },
-      { zoneId: 'flr-06-z3', zoneName: 'Armory', floorName: 'L5 · Secure Core', impact: 'moderate' },
-      { zoneId: 'flr-05-z2', zoneName: 'Cellblock B', floorName: 'L4 · Detention', impact: 'minor' },
+      { zoneId: 'flr-06-z1', zoneName: 'Primary Data Center', floorName: 'L5 | Secure Core', impact: 'severe' },
+      { zoneId: 'flr-06-z2', zoneName: 'Evidence Vault', floorName: 'L5 | Secure Core', impact: 'major' },
+      { zoneId: 'flr-06-z3', zoneName: 'Armory', floorName: 'L5 | Secure Core', impact: 'moderate' },
+      { zoneId: 'flr-05-z2', zoneName: 'Cellblock B', floorName: 'L4 | Detention', impact: 'minor' },
     ],
     responsePlan: [
       { order: 1, actor: 'Fire Detection AI', action: 'Confirm smoke signature, suppress false-positive checks, raise Stage-2 alarm', etaMinutes: 0, automated: true },
@@ -44,17 +44,17 @@ export const emergencyScenarios: EmergencyScenario[] = [
   {
     id: 'scn-power',
     type: 'power_outage',
-    name: 'Power Outage — Utility Mains Failure',
+    name: 'Power Outage - Utility Mains Failure',
     severity: 'high',
     description:
       'Utility mains lost. Facility on UPS bridging to standby generator. UPS System A redundancy is currently degraded.',
     triggerNarrative:
       'Incoming 11kV feeder trips. ATS signals mains loss; critical loads transfer to UPS while generator spins up.',
     impactedZones: [
-      { zoneId: 'flr-01-z3', zoneName: 'UPS & Generator Room', floorName: 'B1 · Parking & Plant', impact: 'severe' },
-      { zoneId: 'flr-06-z1', zoneName: 'Primary Data Center', floorName: 'L5 · Secure Core', impact: 'major' },
-      { zoneId: 'flr-03-z1', zoneName: 'Command & Control Room', floorName: 'L2 · Operations', impact: 'major' },
-      { zoneId: 'flr-04-z3', zoneName: 'Holding Cells', floorName: 'L4 · Detention', impact: 'moderate' },
+      { zoneId: 'flr-01-z3', zoneName: 'UPS & Generator Room', floorName: 'B1 | Parking & Plant', impact: 'severe' },
+      { zoneId: 'flr-06-z1', zoneName: 'Primary Data Center', floorName: 'L5 | Secure Core', impact: 'major' },
+      { zoneId: 'flr-03-z1', zoneName: 'Command & Control Room', floorName: 'L2 | Operations', impact: 'major' },
+      { zoneId: 'flr-04-z3', zoneName: 'Holding Cells', floorName: 'L4 | Detention', impact: 'moderate' },
     ],
     responsePlan: [
       { order: 1, actor: 'Power Management AI', action: 'Detect mains loss, confirm UPS pickup, watch degraded UPS-A load', etaMinutes: 0, automated: true },
@@ -69,7 +69,7 @@ export const emergencyScenarios: EmergencyScenario[] = [
     affectedAssets: 18,
     affectedOccupants: 320,
     cascadeRisks: [
-      'UPS-A degraded — reduced ride-through if generator start fails',
+      'UPS-A degraded - reduced ride-through if generator start fails',
       'Detention door controllers must remain powered (life-safety)',
       'Fuel autonomy ~36h; refuel logistics required for extended outage',
     ],
@@ -77,16 +77,16 @@ export const emergencyScenarios: EmergencyScenario[] = [
   {
     id: 'scn-access',
     type: 'unauthorized_access',
-    name: 'Unauthorized Access — Evidence Vault (L5)',
+    name: 'Unauthorized Access - Evidence Vault (L5)',
     severity: 'high',
     description:
       'Repeated forced-credential attempts at the Evidence Vault reader, coinciding with an after-hours occupancy anomaly.',
     triggerNarrative:
       'Access controller logs 4 denied reads in 60 min; occupancy sensor reports presence in a zone with no scheduled activity.',
     impactedZones: [
-      { zoneId: 'flr-06-z2', zoneName: 'Evidence Vault', floorName: 'L5 · Secure Core', impact: 'severe' },
-      { zoneId: 'flr-06-z3', zoneName: 'Armory', floorName: 'L5 · Secure Core', impact: 'major' },
-      { zoneId: 'flr-06-z1', zoneName: 'Primary Data Center', floorName: 'L5 · Secure Core', impact: 'moderate' },
+      { zoneId: 'flr-06-z2', zoneName: 'Evidence Vault', floorName: 'L5 | Secure Core', impact: 'severe' },
+      { zoneId: 'flr-06-z3', zoneName: 'Armory', floorName: 'L5 | Secure Core', impact: 'major' },
+      { zoneId: 'flr-06-z1', zoneName: 'Primary Data Center', floorName: 'L5 | Secure Core', impact: 'moderate' },
     ],
     responsePlan: [
       { order: 1, actor: 'Security Analytics AI', action: 'Correlate denied reads with occupancy anomaly, raise security alert', etaMinutes: 0, automated: true },
@@ -108,16 +108,16 @@ export const emergencyScenarios: EmergencyScenario[] = [
   {
     id: 'scn-equipment',
     type: 'equipment_failure',
-    name: 'Equipment Failure — Cooling Loss, Data Center',
+    name: 'Equipment Failure - Cooling Loss, Data Center',
     severity: 'high',
     description:
       'Cascading cooling failure: Chiller 1 trips while the Data Center CRAC is already degraded, threatening thermal shutdown.',
     triggerNarrative:
       'Chiller 1 compressor fault removes plant capacity; CRAC supply-air temperature climbs past the safe envelope.',
     impactedZones: [
-      { zoneId: 'flr-06-z1', zoneName: 'Primary Data Center', floorName: 'L5 · Secure Core', impact: 'severe' },
-      { zoneId: 'flr-01-z2', zoneName: 'Chiller Plant', floorName: 'B1 · Parking & Plant', impact: 'major' },
-      { zoneId: 'flr-03-z1', zoneName: 'Command & Control Room', floorName: 'L2 · Operations', impact: 'moderate' },
+      { zoneId: 'flr-06-z1', zoneName: 'Primary Data Center', floorName: 'L5 | Secure Core', impact: 'severe' },
+      { zoneId: 'flr-01-z2', zoneName: 'Chiller Plant', floorName: 'B1 | Parking & Plant', impact: 'major' },
+      { zoneId: 'flr-03-z1', zoneName: 'Command & Control Room', floorName: 'L2 | Operations', impact: 'moderate' },
     ],
     responsePlan: [
       { order: 1, actor: 'Predictive Maintenance AI', action: 'Detect chiller trip, project data-center thermal runaway curve', etaMinutes: 0, automated: true },
