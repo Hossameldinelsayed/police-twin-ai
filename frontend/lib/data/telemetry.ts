@@ -164,3 +164,52 @@ export const trendOverview: MultiTrendPoint[] = Array.from({ length: N_DAYS }, (
   energyMWh: energyTrend[i].value,
   health: assetHealthTrend[i].value,
 }));
+
+// ----------------------------- Climate / environment ------------------------
+// Per-floor environmental telemetry: temperature, humidity, CO2. Deterministic.
+export interface FloorClimate {
+  floorId: string;
+  floorName: string;
+  tempC: number;
+  targetTempC: number;
+  humidityPct: number;
+  co2ppm: number;
+  status: 'normal' | 'watch' | 'alert';
+}
+
+export const floorClimate: FloorClimate[] = floors.map((f) => {
+  const r = seededRandom(900 + f.level + 5);
+  let target = 22.5;
+  if (f.name.includes('Secure Core')) target = 21; // data center / vault
+  else if (f.name.includes('Parking') || f.name.includes('Plant')) target = 24;
+  else if (f.name.includes('Public')) target = 23.5;
+  else if (f.name.includes('Detention')) target = 22;
+  // Secure Core runs warm today — ties to the CRAC cooling-drift story.
+  const drift = f.name.includes('Secure Core') ? 2.1 : (r() - 0.5) * 1.2;
+  const tempC = round(target + drift, 1);
+  const humidityPct = round(40 + r() * 12, 0);
+  const co2ppm = round(420 + r() * (f.name.includes('Public') ? 760 : 340), 0);
+  const dT = Math.abs(tempC - target);
+  const status: FloorClimate['status'] =
+    dT > 1.5 || co2ppm > 1000 ? 'alert' : dT > 0.8 || co2ppm > 850 ? 'watch' : 'normal';
+  return { floorId: f.id, floorName: f.name, tempC, targetTempC: target, humidityPct, co2ppm, status };
+});
+
+export const buildingClimate = (() => {
+  const temps = floorClimate.map((c) => c.tempC);
+  const hottest = floorClimate.reduce((a, b) => (b.tempC > a.tempC ? b : a));
+  const coolest = floorClimate.reduce((a, b) => (b.tempC < a.tempC ? b : a));
+  return {
+    avgTempC: round(temps.reduce((s, t) => s + t, 0) / temps.length, 1),
+    avgHumidity: round(
+      floorClimate.reduce((s, c) => s + c.humidityPct, 0) / floorClimate.length,
+      0,
+    ),
+    avgCo2: round(floorClimate.reduce((s, c) => s + c.co2ppm, 0) / floorClimate.length, 0),
+    minTempC: coolest.tempC,
+    maxTempC: hottest.tempC,
+    hottest,
+    coolest,
+    alerts: floorClimate.filter((c) => c.status !== 'normal').length,
+  };
+})();
