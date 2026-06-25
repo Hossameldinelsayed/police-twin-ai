@@ -184,7 +184,7 @@ export const floorClimate: FloorClimate[] = floors.map((f) => {
   else if (f.name.includes('Parking') || f.name.includes('Plant')) target = 24;
   else if (f.name.includes('Public')) target = 23.5;
   else if (f.name.includes('Detention')) target = 22;
-  // Secure Core runs warm today — ties to the CRAC cooling-drift story.
+  // Secure Core runs warm today - ties to the CRAC cooling-drift story.
   const drift = f.name.includes('Secure Core') ? 2.1 : (r() - 0.5) * 1.2;
   const tempC = round(target + drift, 1);
   const humidityPct = round(40 + r() * 12, 0);
