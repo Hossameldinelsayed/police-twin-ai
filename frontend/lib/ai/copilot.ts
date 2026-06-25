@@ -350,43 +350,57 @@ function assetDetail(a: Asset): CopilotResponse {
   };
 }
 
-function climateResponse(floor: Floor | null): CopilotResponse {
+function climateResponse(floor: Floor | null, focus: 'temp' | 'humidity' | 'co2'): CopilotResponse {
   if (floor) {
     const c = floorClimate.find((x) => x.floorId === floor.id)!;
     const hvac = assetsByFloor(floor.id).filter((a) => a.category === 'HVAC');
+    const lead =
+      focus === 'humidity'
+        ? `**${floor.name}** humidity is **${c.humidityPct}% RH**. Temperature **${c.tempC}°C** (target ${c.targetTempC}°C), CO₂ **${c.co2ppm} ppm**`
+        : focus === 'co2'
+          ? `**${floor.name}** CO₂ is **${c.co2ppm} ppm**. Temperature **${c.tempC}°C**, humidity **${c.humidityPct}% RH**`
+          : `**${floor.name}** temperature is **${c.tempC}°C** (target ${c.targetTempC}°C). Humidity **${c.humidityPct}% RH**, CO₂ **${c.co2ppm} ppm**`;
     return {
       intent: 'climate_floor',
-      answer:
-        `**${floor.name}** climate: temperature **${c.tempC}°C** (target ${c.targetTempC}°C), humidity **${c.humidityPct}%**, ` +
-        `CO₂ **${c.co2ppm} ppm** - status **${c.status.toUpperCase()}**.`,
+      answer: `${lead} - status **${c.status.toUpperCase()}**.`,
       bullets: [
         `Temperature ${c.tempC}°C vs target ${c.targetTempC}°C (${(c.tempC - c.targetTempC >= 0 ? '+' : '') + (c.tempC - c.targetTempC).toFixed(1)}°C)`,
-        `Relative humidity ${c.humidityPct}%`,
+        `Relative humidity ${c.humidityPct}% RH`,
         `CO₂ ${c.co2ppm} ppm`,
         ...hvac.map((h) => `${h.tag} ${h.name}: supply ${h.telemetry.supplyTempC ?? '-'}°C, airflow ${h.telemetry.airflowPct ?? '-'}%`),
       ],
       citations: [
         { label: 'Temperature', value: `${c.tempC}°C` },
-        { label: 'Humidity', value: `${c.humidityPct}%` },
+        { label: 'Humidity', value: `${c.humidityPct}% RH` },
         { label: 'CO₂', value: `${c.co2ppm} ppm` },
       ],
-      followUps: ["What's happening on " + floor.name + '?', 'What is the building temperature?', 'Which assets require maintenance?'],
+      followUps: ['What is the building humidity?', 'What is the building temperature?', 'Which assets require maintenance?'],
     };
   }
+  const b = buildingClimate;
+  const lead =
+    focus === 'humidity'
+      ? `Building-wide humidity averages **${b.avgHumidity}% RH**. Average temperature **${b.avgTempC}°C**, CO₂ **${b.avgCo2} ppm**.`
+      : focus === 'co2'
+        ? `Building-wide CO₂ averages **${b.avgCo2} ppm**. Average temperature **${b.avgTempC}°C**, humidity **${b.avgHumidity}% RH**.`
+        : `Building-wide climate: average temperature **${b.avgTempC}°C**, humidity **${b.avgHumidity}% RH**, CO₂ **${b.avgCo2} ppm**.`;
   return {
     intent: 'climate_building',
     answer:
-      `Building-wide climate: average temperature **${buildingClimate.avgTempC}°C**, humidity **${buildingClimate.avgHumidity}%**, ` +
-      `CO₂ **${buildingClimate.avgCo2} ppm**. **${buildingClimate.alerts} zone(s)** outside the comfort band. ` +
-      `The Secure Core (data center) is running warm at **${buildingClimate.hottest.tempC}°C** due to a CRAC cooling drift.`,
+      `${lead} **${b.alerts} zone(s)** outside the comfort band. ` +
+      `The Secure Core (data center) is running warm at **${b.hottest.tempC}°C** due to a CRAC cooling drift.`,
     bullets: floorClimate.map(
       (c) =>
         `**${c.floorName}** - ${c.tempC}°C (target ${c.targetTempC}°C) | ${c.humidityPct}% RH | ${c.co2ppm} ppm${c.status !== 'normal' ? '  ⚠️' : ''}`,
     ),
     citations: [
-      { label: 'Avg temp', value: `${buildingClimate.avgTempC}°C` },
-      { label: 'Warmest', value: `${buildingClimate.hottest.floorName} (${buildingClimate.hottest.tempC}°C)` },
-      { label: 'Comfort alerts', value: `${buildingClimate.alerts}` },
+      focus === 'humidity'
+        ? { label: 'Avg humidity', value: `${b.avgHumidity}% RH` }
+        : focus === 'co2'
+          ? { label: 'Avg CO₂', value: `${b.avgCo2} ppm` }
+          : { label: 'Avg temp', value: `${b.avgTempC}°C` },
+      { label: 'Warmest', value: `${b.hottest.floorName} (${b.hottest.tempC}°C)` },
+      { label: 'Comfort alerts', value: `${b.alerts}` },
     ],
     followUps: ['Which assets require maintenance?', 'How is energy consumption tracking?', 'Show active alarms.'],
   };
@@ -499,25 +513,61 @@ function bestIntent(q: string): { handler: (() => CopilotResponse) | null; score
   return { handler, score };
 }
 
-const CLIMATE_RE = /temperatur|temp\b|how (hot|cold|warm)|humid|co2|co₂|climate|environment|cooling|ventilat|air quality|thermal|degrees|°c/;
-const COUNT_RE = /how many|number of|count of|how much .*(are|do)/;
+// ----------------------------- query understanding --------------------------
+// Expand facility shorthand & synonyms so the engine understands abbreviations
+// (RH, temp, AC, CCTV, UPS, gen, kWh, PM, pax, CO2, ...). The matched canonical
+// words are appended to the query before intent/entity detection.
+const SYNONYMS: [RegExp, string][] = [
+  [/\brh\b|r\.h\.|relative humidity|humidit|moisture|damp/, ' humidity climate '],
+  [/\btemp\b|temperatur|how (hot|cold|warm)|degrees|thermal|°c|hot in here/, ' temperature climate '],
+  [/\bco2\b|co₂|carbon dioxide|air quality|\biaq\b|stuffy|fresh air/, ' co2 climate '],
+  [/\ba\/?c\b|air ?con|cooling|chiller|\bcrac\b|\bahu\b|hvac|ventilat/, ' hvac cooling '],
+  [/\bcctv\b|\bcams?\b|cameras?|surveillance|video feed/, ' camera '],
+  [/\bacs\b|access control|\bdoors?\b|\breaders?\b|badge|turnstile|card reader/, ' access door '],
+  [/\bups\b|batter|backup power|standby power/, ' ups battery '],
+  [/\bgen(set)?\b|generator|diesel/, ' generator electrical '],
+  [/\bpax\b|people|head ?count|foot ?fall|occupanc|how busy|crowd|staff present/, ' occupancy people '],
+  [/\bk?wh?\b|\bmwh\b|power (draw|usage|consumption)|energy|electric|consumption|\bload\b/, ' energy power consumption '],
+  [/\bpm\b|preventive|maint|work ?order|ticket|servic|repair|broken|\bfix\b|fault/, ' maintenance '],
+  [/alarm|alert|trouble|warning|incident/, ' alarm '],
+  [/\brisk\b|danger|threat|posture/, ' risk '],
+  [/net(work)?|switch|router|bandwidth|latency/, ' network '],
+  [/sensor|\biot\b|probe/, ' sensor '],
+  [/\bfire\b|smoke|suppress/, ' fire '],
+];
+
+function expandQuery(q: string): string {
+  let extra = '';
+  for (const [re, words] of SYNONYMS) if (re.test(q)) extra += words;
+  return q + extra;
+}
+
+const CLIMATE_RE = /temperatur|humid|co2|co₂|climate/;
+const COUNT_RE = /how many|number of|count of|how much/;
 
 export function copilotRespond(query: string): CopilotResponse {
   const trimmed = query.trim();
   if (!trimmed) return statusIntent();
-  const q = trimmed.toLowerCase();
+  const raw = trimmed.toLowerCase();
+  const q = expandQuery(raw); // shorthand-expanded text for matching
 
-  const asset = findAsset(q);
+  const asset = findAsset(raw); // tags / names come from the raw text
   const floor = findFloor(q);
   const cat = findCategory(q);
   const isClimate = CLIMATE_RE.test(q);
   const isCount = COUNT_RE.test(q);
+  const climateFocus: 'temp' | 'humidity' | 'co2' =
+    /\brh\b|humid|moisture|damp/.test(raw)
+      ? 'humidity'
+      : /co2|co₂|carbon|air quality|iaq|stuffy/.test(raw)
+        ? 'co2'
+        : 'temp';
   const { handler, score } = bestIntent(q);
 
   // 1) Specific asset lookup (unless it's really a climate question)
   if (asset && !isClimate) return assetDetail(asset);
-  // 2) Temperature / climate (optionally scoped to a floor)
-  if (isClimate) return climateResponse(floor);
+  // 2) Temperature / humidity / CO2 (optionally scoped to a floor)
+  if (isClimate) return climateResponse(floor, climateFocus);
   // 3) Counts
   if (isCount) return countsResponse(cat);
   // 4) Strong topic match
@@ -538,15 +588,15 @@ export function copilotRespond(query: string): CopilotResponse {
   return {
     intent: 'fallback',
     answer:
-      `I'm grounded on live data for **${building.name}** and can answer about temperature & climate, energy, occupancy, ` +
-      `risk, alarms, maintenance, and the live telemetry of any of the ${assetCounts.total} assets, any floor, or any system. ` +
-      `Right now risk is **${riskAssessment.category} (${riskAssessment.score})**, avg temp **${buildingClimate.avgTempC}°C**, ` +
-      `**${activeAlarms.length} active alarms**. Try:`,
+      `I'm grounded on live data for **${building.name}** and understand shorthand too (RH, temp, AC, CCTV, UPS, kWh, PM…). ` +
+      `Ask about temperature, humidity, CO₂, energy, occupancy, risk, alarms, maintenance, or the live telemetry of any of the ` +
+      `${assetCounts.total} assets, any floor, or any system. Right now: risk **${riskAssessment.category} (${riskAssessment.score})**, ` +
+      `avg temp **${buildingClimate.avgTempC}°C**, humidity **${buildingClimate.avgHumidity}% RH**, **${activeAlarms.length} active alarms**. Try:`,
     bullets: suggestedQuestions.map((s) => `“${s}”`),
     citations: [
       { label: 'Risk', value: `${riskAssessment.score} (${riskAssessment.category})` },
       { label: 'Avg temp', value: `${buildingClimate.avgTempC}°C` },
-      { label: 'Active alarms', value: `${activeAlarms.length}` },
+      { label: 'Humidity', value: `${buildingClimate.avgHumidity}% RH` },
     ],
     followUps: suggestedQuestions.slice(0, 3),
   };
