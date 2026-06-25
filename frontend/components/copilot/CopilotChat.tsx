@@ -148,18 +148,11 @@ export function CopilotChat({ className }: { className?: string }) {
 
   const endRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Auto-scroll to newest.
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages, thinking]);
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
 
   function submit(raw: string) {
     const query = raw.trim();
@@ -170,13 +163,24 @@ export function CopilotChat({ className }: { className?: string }) {
     setInput('');
     setThinking(true);
 
-    // Deterministic-ish latency between 600-900ms (no Math.random at module scope).
-    const delay = 600 + (query.length % 4) * 75;
-    timerRef.current = setTimeout(() => {
-      const response = copilotRespond(query);
+    // Ask the server route (real GPT when OPENAI_API_KEY is set), with a local
+    // deterministic fallback if the network/route is unavailable.
+    void (async () => {
+      let response: CopilotResponse;
+      try {
+        const r = await fetch('/api/ai-copilot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query }),
+        });
+        if (!r.ok) throw new Error(`status ${r.status}`);
+        response = (await r.json()) as CopilotResponse;
+      } catch {
+        response = copilotRespond(query);
+      }
       setMessages((prev) => [...prev, { id: nextId(), role: 'assistant', response }]);
       setThinking(false);
-    }, delay);
+    })();
   }
 
   const showWelcomeChips = messages.length === 1;
@@ -193,7 +197,7 @@ export function CopilotChat({ className }: { className?: string }) {
             <div className="flex items-center gap-2">
               <h2 className="text-sm font-semibold tracking-tight text-white">AI Facility Copilot</h2>
               <span className="chip border-cognition-500/30 bg-cognition-500/10 text-cognition-200">
-                <Bot className="h-3 w-3" /> GPT-grade reasoning
+                <Bot className="h-3 w-3" /> OpenAI GPT + grounded data
               </span>
             </div>
             <p className="mt-0.5 text-xs text-slate-500">Grounded on live facility state</p>

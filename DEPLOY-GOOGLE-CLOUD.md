@@ -58,6 +58,16 @@ gcloud run deploy police-twin-ai --source . --region me-central1 --allow-unauthe
 ```
 (Same URL stays. I push code changes to GitHub; you re-run this.)
 
+## Enable real GPT in the Copilot (optional)
+The Copilot uses the built-in rule engine by default. To switch it to **real OpenAI GPT**, redeploy with your key as an environment variable:
+```
+cd ~/police-twin-ai && git pull && cd frontend && gcloud run deploy police-twin-ai --source . --project project-1fcdf004-4c10-455f-99a --region me-central1 --allow-unauthenticated --port 8080 --memory 1Gi --update-env-vars OPENAI_API_KEY=sk-YOUR_KEY_HERE
+```
+- Get a key at https://platform.openai.com/api-keys (needs OpenAI billing; gpt-4o-mini is ~cents).
+- The key stays **server-side** (used only in `app/api/ai-copilot/route.ts`), never sent to the browser.
+- If the key is missing or the API errors, the Copilot automatically falls back to the rule engine.
+- To change the model: add `OPENAI_MODEL=gpt-4o` to the same `--update-env-vars` (comma-separated).
+
 ## Turn it off (guarantee $0)
 ```bash
 gcloud run services delete police-twin-ai --region me-central1
