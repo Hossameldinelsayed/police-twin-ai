@@ -1,5 +1,5 @@
 // ============================================================================
-// POLICE TWIN AI — PostgreSQL connection helper
+// Ministry of Interior — PostgreSQL connection helper
 // ----------------------------------------------------------------------------
 // Exposes:
 //   - pool       : a lazily-created pg.Pool (or null when USE_DB=false)

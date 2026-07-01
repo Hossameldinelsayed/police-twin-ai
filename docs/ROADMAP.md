@@ -1,6 +1,6 @@
 # Product Roadmap
 
-POLICE TWIN AI today is a self-contained, deterministic **demonstration** of an AI command center and digital twin. This roadmap describes how it evolves into a production platform — from live integrations, to real machine-learning models, to city-scale federation — while preserving the core promise: **explainable, single-pane-of-glass facility intelligence**.
+Ministry of Interior today is a self-contained, deterministic **demonstration** of an AI command center and digital twin. This roadmap describes how it evolves into a production platform — from live integrations, to real machine-learning models, to city-scale federation — while preserving the core promise: **explainable, single-pane-of-glass facility intelligence**.
 
 The platform is deliberately built for this path. Every mock module sits behind a typed contract (see [ARCHITECTURE.md](ARCHITECTURE.md) §7), so each phase swaps *sources and models* without rewriting the experience.
 

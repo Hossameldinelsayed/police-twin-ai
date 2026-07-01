@@ -1,4 +1,4 @@
-# 🚀 Deploy POLICE TWIN AI to Google Cloud (shareable link)
+# 🚀 Deploy Ministry of Interior to Google Cloud (shareable link)
 
 Deploys the app to **Google Cloud Run** → a public HTTPS link like
 `https://police-twin-ai-xxxxxxxx.me-central1.run.app` you can share with anyone.

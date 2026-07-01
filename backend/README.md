@@ -1,6 +1,6 @@
-# Police Twin AI — API
+# Ministry of Interior — API
 
-Reference backend for the **Police Twin AI** smart-facility digital twin. It
+Reference backend for the **Ministry of Interior** smart-facility digital twin. It
 mirrors the Next.js Command Center's data contracts and exposes a REST API plus
 an explainable AI engine (composite risk scoring, predictive maintenance, and a
 grounded facility copilot).

@@ -1,5 +1,5 @@
 // ============================================================================
-// POLICE TWIN AI — database seeder
+// Ministry of Interior — database seeder
 // ----------------------------------------------------------------------------
 // Creates the schema (runs db/schema.sql) and inserts the deterministic dataset
 // from src/data/dataset.js. Idempotent: schema.sql drops & recreates tables, so

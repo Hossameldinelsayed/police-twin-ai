@@ -1,5 +1,5 @@
 // ============================================================================
-// POLICE TWIN AI — API server
+// Ministry of Interior — API server
 // ----------------------------------------------------------------------------
 // Express application wiring: CORS, request logging (morgan), JSON body parsing,
 // the API router, a health endpoint, a 404 handler and a central error handler.
@@ -62,7 +62,7 @@ app.get('/api/health', (_req, res) => {
 // Friendly root with an endpoint index.
 app.get('/', (_req, res) => {
   res.json({
-    service: 'Police Twin AI — REST API',
+    service: 'Ministry of Interior — REST API',
     docs: 'See README.md for the full endpoint list and examples.',
     health: '/api/health',
     endpoints: [
@@ -121,7 +121,7 @@ const server = app.listen(PORT, () => {
   /* eslint-disable no-console */
   console.log('');
   console.log('  ┌────────────────────────────────────────────────┐');
-  console.log('  │   POLICE TWIN AI — API                           │');
+  console.log('  │   Ministry of Interior — API                           │');
   console.log('  ├────────────────────────────────────────────────┤');
   console.log(`  │   Listening   : http://localhost:${PORT}`.padEnd(51) + '│');
   console.log(`  │   Data source : ${dbEnabled ? 'PostgreSQL' : 'in-memory (deterministic)'}`.padEnd(51) + '│');

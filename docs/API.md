@@ -1,6 +1,6 @@
 # Backend REST API Reference
 
-The optional **Express** backend in `backend/` exposes the POLICE TWIN AI data over a REST API at `/api/*`. It mirrors the exact data contracts the frontend uses (see [DATA_MODEL.md](DATA_MODEL.md)), so a client can run on the built-in mock data **or** against this API with no change to the data shapes.
+The optional **Express** backend in `backend/` exposes the Ministry of Interior data over a REST API at `/api/*`. It mirrors the exact data contracts the frontend uses (see [DATA_MODEL.md](DATA_MODEL.md)), so a client can run on the built-in mock data **or** against this API with no change to the data shapes.
 
 - **Base URL:** `http://localhost:4000/api`
 - **Content type:** `application/json`

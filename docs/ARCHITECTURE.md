@@ -1,12 +1,12 @@
 # Architecture
 
-This document describes how **POLICE TWIN AI** is built: the layered architecture, the data-flow model, the deterministic-mock-AI rationale, the dual frontend-data / backend-API design, the folder structure, the key design decisions, and the path to real production data sources.
+This document describes how **Ministry of Interior** is built: the layered architecture, the data-flow model, the deterministic-mock-AI rationale, the dual frontend-data / backend-API design, the folder structure, the key design decisions, and the path to real production data sources.
 
 ---
 
 ## 1. System overview
 
-POLICE TWIN AI is a **layered Next.js 14 application** with an optional Express + PostgreSQL reference backend. The defining architectural choice is that **the frontend is fully self-contained**: it ships with a typed mock dataset and a deterministic mock AI engine, so the executive demo runs with no backend, no database and no network. The backend exists as a production-shaped reference that mirrors the exact same data contracts.
+Ministry of Interior is a **layered Next.js 14 application** with an optional Express + PostgreSQL reference backend. The defining architectural choice is that **the frontend is fully self-contained**: it ships with a typed mock dataset and a deterministic mock AI engine, so the executive demo runs with no backend, no database and no network. The backend exists as a production-shaped reference that mirrors the exact same data contracts.
 
 ### Layered architecture (Mermaid)
 

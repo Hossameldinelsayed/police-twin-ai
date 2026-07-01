@@ -1,6 +1,6 @@
 # Data Model
 
-This document describes the POLICE TWIN AI domain model — the entities, their relationships, and the PostgreSQL schema used by the optional backend. The TypeScript definitions in `frontend/lib/types.ts` are the **single shared contract**: the frontend mock data, the AI engine and the backend all conform to it, and the PostgreSQL schema in `backend/db/schema.sql` is a faithful relational projection of it.
+This document describes the Ministry of Interior domain model — the entities, their relationships, and the PostgreSQL schema used by the optional backend. The TypeScript definitions in `frontend/lib/types.ts` are the **single shared contract**: the frontend mock data, the AI engine and the backend all conform to it, and the PostgreSQL schema in `backend/db/schema.sql` is a faithful relational projection of it.
 
 ---
 

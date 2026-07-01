@@ -1,6 +1,6 @@
 # Installation Guide
 
-This guide covers everything needed to run **POLICE TWIN AI** locally — from the zero-config frontend demo to the optional Express + PostgreSQL backend.
+This guide covers everything needed to run **Ministry of Interior** locally — from the zero-config frontend demo to the optional Express + PostgreSQL backend.
 
 > **TL;DR** — `cd frontend && npm install && npm run dev` → http://localhost:3000. No database. No API keys. Done.
 

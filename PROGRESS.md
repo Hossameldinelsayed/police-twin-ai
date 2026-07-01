@@ -1,4 +1,4 @@
-# POLICE TWIN AI — Build Progress Log
+# Ministry of Interior — Build Progress Log
 
 > Autonomous build of an executive-grade AI command center for smart police facilities.
 > Stack: Next.js 14 (App Router) · TypeScript · TailwindCSS · Three.js (R3F) · Framer Motion · Recharts · Node/Express · PostgreSQL.

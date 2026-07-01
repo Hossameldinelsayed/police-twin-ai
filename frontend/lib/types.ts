@@ -1,5 +1,5 @@
 // ============================================================================
-// POLICE TWIN AI - Core domain types
+// Ministry of Interior - Core domain types
 // Shared data contracts for the entire platform (frontend + backend mirror).
 // ============================================================================
 

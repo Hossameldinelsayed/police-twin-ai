@@ -1,5 +1,5 @@
 -- ============================================================================
--- POLICE TWIN AI — PostgreSQL schema
+-- Ministry of Interior — PostgreSQL schema
 -- ----------------------------------------------------------------------------
 -- DDL for the facility digital-twin domain. Mirrors the JS data contracts
 -- (see src/data/dataset.js / frontend/lib/types.ts). Nested arrays that are

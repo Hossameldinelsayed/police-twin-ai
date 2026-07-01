@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛰️ POLICE TWIN AI
+# 🛰️ Ministry of Interior
 
 ### An AI command center & live digital twin for smart police facilities.
 
@@ -21,7 +21,7 @@
 
 ---
 
-> **POLICE TWIN AI** fuses an interactive 3D **digital twin** of a police headquarters with an **explainable AI layer** — composite risk scoring, predictive maintenance, an emergency-response simulator and a conversational copilot — into a single, executive-grade **command center**.
+> **Ministry of Interior** fuses an interactive 3D **digital twin** of a police headquarters with an **explainable AI layer** — composite risk scoring, predictive maintenance, an emergency-response simulator and a conversational copilot — into a single, executive-grade **command center**.
 >
 > The reference facility is **Central Command HQ** (`PTX-HQ-01`): a 6-level, ~42,800 m² smart police headquarters with ~48 building assets, live telemetry and a running incident stream. Everything you see is computed by a **deterministic mock intelligence engine**, so the entire platform runs offline with **no database, no API keys, and no cloud** — just `npm install && npm run dev`.
 
@@ -29,7 +29,7 @@
 
 ## ✨ Why it matters
 
-Modern police and critical-security facilities run on a tangle of disconnected systems — building management (BMS), video (VMS), access control (ACS), power, fire and IoT. POLICE TWIN AI shows what happens when you put a **single intelligent pane of glass** over all of them:
+Modern police and critical-security facilities run on a tangle of disconnected systems — building management (BMS), video (VMS), access control (ACS), power, fire and IoT. Ministry of Interior shows what happens when you put a **single intelligent pane of glass** over all of them:
 
 - **One situational truth** — security, energy, occupancy and infrastructure in one composite view.
 - **Explainable AI, not a black box** — every risk number traces back to weighted domains and named signals.
@@ -180,6 +180,6 @@ All telemetry, alarms, asset health, risk scores, predictions and copilot answer
 
 ---
 
-**POLICE TWIN AI** · Central Command HQ `PTX-HQ-01` · *Built as an executive product demonstration.*
+**Ministry of Interior** · Central Command HQ `PTX-HQ-01` · *Built as an executive product demonstration.*
 
 </div>

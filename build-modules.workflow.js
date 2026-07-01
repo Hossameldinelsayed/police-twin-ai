@@ -1,6 +1,6 @@
 export const meta = {
   name: 'police-twin-modules',
-  description: 'Build remaining POLICE TWIN AI modules (Copilot, Risk, Predictive, Emergency, Dashboard) + backend + docs on the verified foundation',
+  description: 'Build remaining Ministry of Interior modules (Copilot, Risk, Predictive, Emergency, Dashboard) + backend + docs on the verified foundation',
   phases: [
     { title: 'Build', detail: 'One agent per module / backend / docs' },
     { title: 'Verify', detail: 'Cross-check imports, client/server boundaries, contract adherence; fix in place' },
@@ -11,7 +11,7 @@ const ROOT = 'C:/Users/Hossa/.claude/projects/Dubai Police';
 const FE = `${ROOT}/frontend`;
 
 const CONTRACT = `
-# POLICE TWIN AI — FOUNDATION API CONTRACT (already built & type-checks clean)
+# Ministry of Interior — FOUNDATION API CONTRACT (already built & type-checks clean)
 
 You are extending an existing Next.js 14 (App Router) + TypeScript + TailwindCSS app located at:
 ${FE}
@@ -301,7 +301,7 @@ Make the code clean, commented, and genuinely runnable. Return the structured ob
     build: `${CONTRACT}
 
 # YOUR TASK — Documentation & deliverables
-Write the complete documentation suite. This is for an EXECUTIVE-GRADE product demo (POLICE TWIN AI — AI command center & digital twin for smart police facilities). Be specific and reference the ACTUAL implemented features, routes, modules, data and stack. Professional, confident, well-structured Markdown with tables, code blocks, and diagrams.
+Write the complete documentation suite. This is for an EXECUTIVE-GRADE product demo (Ministry of Interior — AI command center & digital twin for smart police facilities). Be specific and reference the ACTUAL implemented features, routes, modules, data and stack. Professional, confident, well-structured Markdown with tables, code blocks, and diagrams.
 
 Context you can rely on (already built):
 - Frontend: Next.js 14 App Router + TypeScript + TailwindCSS + Three.js (@react-three/fiber + drei) + Framer Motion + Recharts, at frontend/. Runs with \`npm install && npm run dev\` on http://localhost:3000 — NO database required (self-contained mock data + mock AI engine).

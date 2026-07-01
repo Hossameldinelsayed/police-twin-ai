@@ -1,5 +1,5 @@
 // ============================================================================
-// POLICE TWIN AI — In-memory dataset (source of truth)
+// Ministry of Interior — In-memory dataset (source of truth)
 // ----------------------------------------------------------------------------
 // Mirrors the frontend's data contracts (see frontend/lib/types.ts and
 // frontend/lib/data/*). Fully deterministic: a small seeded PRNG is used so the

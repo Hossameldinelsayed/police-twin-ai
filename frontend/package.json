@@ -2,7 +2,7 @@
   "name": "police-twin-ai",
   "version": "1.0.0",
   "private": true,
-  "description": "POLICE TWIN AI — Executive AI command center & digital twin for smart police facilities.",
+  "description": "Ministry of Interior — Executive AI command center & digital twin for smart police facilities.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

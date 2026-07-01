@@ -1,10 +1,10 @@
 @echo off
-title POLICE TWIN AI - Local Server
+title Ministry of Interior - Local Server
 cd /d "C:\Users\Hossa\.claude\projects\Dubai Police\frontend"
 
 echo.
 echo  ============================================================
-echo     POLICE TWIN AI  -  starting the local app server
+echo     Ministry of Interior  -  starting the local app server
 echo  ============================================================
 echo.
 echo     * A browser tab will open automatically in ~15 seconds.

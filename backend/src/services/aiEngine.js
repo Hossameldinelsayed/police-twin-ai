@@ -1,5 +1,5 @@
 // ============================================================================
-// POLICE TWIN AI — AI ENGINE
+// Ministry of Interior — AI ENGINE
 // ----------------------------------------------------------------------------
 // Conceptually mirrors the frontend AI modules (frontend/lib/ai/*):
 //   - computeRisk()       -> composite, explainable facility risk score
