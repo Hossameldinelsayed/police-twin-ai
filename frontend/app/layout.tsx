@@ -16,10 +16,10 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'POLICE TWIN AI - Smart Facility Command Center',
+  title: 'MOI - Smart Facility Command Center',
   description:
     'AI-powered digital twin command center for smart police facilities: risk intelligence, predictive maintenance, 3D facility model, and emergency response simulation.',
-  applicationName: 'POLICE TWIN AI',
+  applicationName: 'MOI',
 };
 
 export const viewport: Viewport = {

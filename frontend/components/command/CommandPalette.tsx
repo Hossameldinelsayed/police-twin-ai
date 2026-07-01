@@ -194,7 +194,7 @@ export function CommandPalette() {
                 </span>
               </div>
               <span className="flex items-center gap-1">
-                <Command className="h-3 w-3" /> POLICE TWIN AI
+                <Command className="h-3 w-3" /> MOI
               </span>
             </div>
           </motion.div>

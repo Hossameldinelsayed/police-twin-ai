@@ -11,7 +11,7 @@ export function Footer() {
             <ShieldHalf className="h-3.5 w-3.5" />
           </span>
           <span className="font-medium tracking-tight text-slate-400">
-            POLICE<span className="text-command-400/80"> TWIN</span> AI
+M<span className="text-command-400/80">O</span>I
           </span>
           <span className="text-slate-700"> | </span>
           <span className="tracking-tight">© {year}</span>

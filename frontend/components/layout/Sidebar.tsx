@@ -23,7 +23,7 @@ export function Sidebar() {
         </div>
         <div className="leading-tight">
           <div className="text-sm font-semibold tracking-tight text-white">
-            POLICE<span className="text-command-400"> TWIN</span> AI
+M<span className="text-command-400">O</span>I
           </div>
           <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500">
             Command Platform

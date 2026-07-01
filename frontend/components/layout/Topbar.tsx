@@ -41,7 +41,7 @@ export function Topbar() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-command-500/30 bg-command-500/10">
               <ShieldHalf className="h-4 w-4 text-command-300" />
             </div>
-            <span className="text-sm font-semibold text-white">PT | AI</span>
+            <span className="text-sm font-semibold text-white">MOI</span>
           </div>
           <div className="hidden items-center gap-2 text-sm text-slate-400 sm:flex">
             <span className="text-slate-500">Platform</span>
